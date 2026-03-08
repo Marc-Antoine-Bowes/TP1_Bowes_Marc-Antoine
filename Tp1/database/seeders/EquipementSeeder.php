@@ -12,7 +12,7 @@ class EquipementSeeder extends Seeder
      */
     public function run(): void
     {
-        $sql = file_get_contents(database_path().'/seeders/equipements.sql');
+        $sql = file_get_contents(database_path().'/seeders/equipments.sql');
         DB::statement($sql);
     }
 }

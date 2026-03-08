@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('name', 50);
             $table->text('description');
             $table->decimal('daily_price', 10, 2);
-            $table->foreignId('category_Id')->constrained();
+
+            $table->bigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

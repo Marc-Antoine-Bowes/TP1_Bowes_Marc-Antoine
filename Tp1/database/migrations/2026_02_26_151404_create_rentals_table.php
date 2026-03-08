@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->decimal('total_price',10,2);
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('equipement_id')->constrained();
+
+            $table->bigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('equipment_id');            
+            $table->foreign('equipment_id')->references('id')->on('equipment');
         });
     }
 

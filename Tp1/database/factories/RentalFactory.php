@@ -21,7 +21,7 @@ class RentalFactory extends Factory
             'end_date' =>fake()->date(),
             'total_price' =>fake()->numberBetween(5,100),
             'user_id' =>fake()->numberBetween(1,4),
-            'equipement_id'=>fake()->numberBetween(1,5)
+            'equipment_id'=>fake()->numberBetween(1,5)
         ];
     }
 }

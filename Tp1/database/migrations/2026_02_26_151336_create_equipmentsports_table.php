@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipmentsports', function (Blueprint $table) {
-            $table->id();
+        Schema::create('equipment_sport', function (Blueprint $table) {
             $table->timestamps();
-            $table->foreignId('sport_id')->constrained();
-            $table->foreignId('equipement_id')->constrained();
+
+            $table->bigInteger('sport_id');
+            $table->foreign('sport_id')->references('id')->on('sports');
+            $table->bigInteger('equipment_id');
+            $table->foreign('equipment_id')->references('id')->on('equipment');
+            $table->primary(['sport_id', 'equipment_id']);
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipementsports');
+        Schema::dropIfExists('equipment_sport');
     }
 };

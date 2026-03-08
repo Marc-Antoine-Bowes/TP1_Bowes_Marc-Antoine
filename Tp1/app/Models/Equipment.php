@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Equipment extends Model
 {
     protected $fillable = [
-        'name', 'description', 'daily_price', 'category_Id'
+        'name', 
+        'description', 
+        'daily_price', 
+        'category_Id'
     ];
 
     public function categories(){

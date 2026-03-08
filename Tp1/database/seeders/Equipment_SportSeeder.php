@@ -12,7 +12,7 @@ class Equipment_SportSeeder extends Seeder
      */
     public function run(): void
     {
-       $sql = file_get_contents(database_path().'/seeders/sports.sql');
+       $sql = file_get_contents(database_path().'/seeders/equipment_sport.sql');
        DB::statement($sql);
     }
 }

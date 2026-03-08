@@ -16,8 +16,12 @@ return new class extends Migration
             $table->timestamps();
             $table->tinyInteger('rating');
             $table->string('comment');
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('rental_id')->constrained();
+
+            $table->bigInteger('user_id');   
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->bigInteger('rental_id');   
+            $table->foreign('rental_id')->references('id')->on('rentals');
         });
     }
 
