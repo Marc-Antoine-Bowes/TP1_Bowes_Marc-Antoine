@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-            try {
+        try {
             return UserResource::collection(User::paginate(20))->response()->setStatusCode(200);
         } catch (Exception $ex) {
             abort(500, 'Server error');
@@ -40,14 +40,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdateUserRequest $request, string $id)
@@ -57,21 +49,13 @@ class UserController extends Controller
     
             $user = User::findOrFail($id);
     
-            $user = User::update($request->validate($request->rules()));
+            $user->update($request->validated());
             
-            return (new UserResource($user))->response()->setStatusCode(201);
+            return (new UserResource($user))->response()->setStatusCode(200);
         } catch (ModelNotFoundException $ex) {
             abort(404, 'Invalid id');
         } catch (Exception $ex) {
             abort(500, 'Server error');
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

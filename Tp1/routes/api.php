@@ -23,4 +23,5 @@ Route::post('/users', [UserController::class, 'store']);
 
 Route::put('/users/{id}', [UserController::class, 'update']);
 
-Route::delete('/reviews/{id}', [ReviewController::class, 'delete']);
+Route::get('/reviews/{id}', [ReviewController::class, 'show']);
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
