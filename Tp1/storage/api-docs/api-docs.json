@@ -1,0 +1,342 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Laravel pour Sports",
+        "description": "Documentation API Laravel avec Swagger",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/equipment": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Liste de tous les Users",
+                "description": "Returns list of Users",
+                "operationId": "771e58f407e40ca413f92c85f944e760",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/equipement/{id}": {
+            "get": {
+                "tags": [
+                    "Equipment"
+                ],
+                "summary": "Afficher un équipement",
+                "description": "Display the specified resource.",
+                "operationId": "5675c5f556bce3bc8cc658ad65a6bebb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Equipment ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Review non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/equipement/{id}/Review": {
+            "get": {
+                "tags": [
+                    "Equipment"
+                ],
+                "summary": "Affiche la moyenne des review équipement",
+                "description": "Display Equipement Review",
+                "operationId": "f3b30ef17232764a2a0953a22b557ca1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Equipment ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Review non trouvé"
+                    }
+                }
+            }
+        },
+        "/api/equipments/{id}/location-price": {
+            "get": {
+                "tags": [
+                    "Rentals"
+                ],
+                "summary": "Prix moyen de location d'un équipement",
+                "description": "Retourne le prix moyen des locations pour un équipement dans une plage de dates optionnelle",
+                "operationId": "b6a6bec065c620ca6c4693581fda7ef5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de l'équipement",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 5
+                        }
+                    },
+                    {
+                        "name": "mindate",
+                        "in": "query",
+                        "description": "Date minimale de location",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2024-01-01"
+                        }
+                    },
+                    {
+                        "name": "maxdate",
+                        "in": "query",
+                        "description": "Date maximale de location",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2024-12-31"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Prix moyen retourné",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "number",
+                                    "format": "float"
+                                },
+                                "example": 125.5
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Erreur de date (mindate > maxdate)"
+                    },
+                    "500": {
+                        "description": "Erreur serveur"
+                    }
+                }
+            }
+        },
+        "/api/reviews/{id}": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Afficher une review",
+                "description": "Display the specified resource.",
+                "operationId": "a9949d3a965ed93ae30547c07eef7505",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Review ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Review non trouvé"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Delete a review",
+                "description": "Deletes a review by ID",
+                "operationId": "89986343b5dbd2b909c2764aeb7e4096",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Review ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Review deleted successfully"
+                    },
+                    "404": {
+                        "description": "Review not found"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Liste de tous les Users",
+                "description": "Returns list of Users",
+                "operationId": "c457726701591d1183b53aa71fc13441",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Créer un utilisateur",
+                "description": "Store a newly created resource in storage.",
+                "operationId": "592819a0265360b2014512d6dbfaf0e7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "phone"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "Joe"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Louis"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "joelouis@email.com"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "555-555-2123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Utilisateur créé"
+                    },
+                    "422": {
+                        "description": "id invalide"
+                    },
+                    "500": {
+                        "description": "Erreur serveur"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Mettre à jour un utilisateur",
+                "description": "Met à jour les informations d'un utilisateur existant",
+                "operationId": "b9091397c8b25f12c6adb74be6ce3a5a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de l'utilisateur",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "Jean"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Tremblay"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "jean@email.com"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "418-555-1234"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Utilisateur mis à jour avec succès"
+                    },
+                    "404": {
+                        "description": "id non trouvé"
+                    },
+                    "500": {
+                        "description": "Erreur serveur"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Users",
+            "description": "Users"
+        },
+        {
+            "name": "Equipment",
+            "description": "Equipment"
+        },
+        {
+            "name": "Rentals",
+            "description": "Rentals"
+        },
+        {
+            "name": "Reviews",
+            "description": "Reviews"
+        }
+    ]
+}
